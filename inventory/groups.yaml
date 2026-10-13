@@ -1,6 +1,7 @@
 ---
 eos:
   username: admin
+  password: "YOUR_LAB_PASSWORD"
   platform: eos
   data: {}
 edge:

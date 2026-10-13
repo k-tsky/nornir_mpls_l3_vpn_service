@@ -5,9 +5,16 @@ edge1:
     - eos
     - edge
     - site-A
+  data:
+    bgp_as: 65001
+    router_id: "10.0.0.1"
+
 edge2:
   hostname: 192.168.121.102
   groups:
     - eos
     - edge
     - site-B
+  data:
+    bgp_as: 65001
+    router_id: "10.0.0.2"

@@ -1,2 +1,5 @@
 nornir
 nornir_rich
+PyYAML
+nornir_jinja2
+nornir_netmiko

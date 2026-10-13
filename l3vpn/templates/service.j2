@@ -1,0 +1,25 @@
+{% for service in services %}
+vrf instance {{ service.name }}
+exit
+ip routing vrf {{ service.name }}
+{% for interface in service.interfaces %}
+interface {{ interface.name }}
+      no switchport
+      vrf {{ service.name }}
+      ip address {{ interface.ip }}
+      no shutdown
+exit
+{% endfor %}
+router bgp {{ bgp_as }}
+      vrf {{ service.name }}
+            rd {{ router_id }}:{{ service.id }}
+{% for target in service.route_import %}
+      route-target import vpn-ipv4 {{ target }}
+{% endfor %}
+{% for target in service.route_export %}
+      route-target export vpn-ipv4 {{ target }}
+{% endfor %}
+      redistribute connected
+   exit
+exit
+{% endfor %}
